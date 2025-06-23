@@ -19,3 +19,4 @@ Note: data is stored in **tsv** (tab separated values) format, which is useful f
   * `algorithm` determines which algorithm to use for calculating the rankings. The current possible values are `default`, `zscore`, `nscore`, and `cpmc`.
   * `bracket_ignore_scores` skips including the stats and just includes team info when running `bracket.py`.
 * About `yadon.py`: A thing I made for myself back in college to store data in TSV format in text files 😂 It was mainly for [SobbleDex](https://github.com/Chupalika/SobbleDex) but I've been using it for a lot of my other things since it's extremely lightweight.
+* One thing to look out for is username changes. Individual scores won't be affected since they are attributed by user ID, but team scores will. After calculating stats, double check any suspiciously low scores :)
