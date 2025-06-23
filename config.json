@@ -1,0 +1,17 @@
+{
+  "api_key": "",
+  "ignore_zero": false,
+  "include_accuracy": false,
+  "include_geki_count": false,
+  "include_300_count": false,
+  "include_katu_count": false,
+  "include_100_count": false,
+  "include_50_count": false,
+  "include_miss_count": false,
+  "include_combo": false,
+  "include_mods": true,
+  "include_team": false,
+  "include_pp_rank": false,
+  "algorithm": "default",
+  "bracket_ignore_scores": false
+}
