@@ -1,5 +1,6 @@
 {
   "api_key": "",
+  "game_mode": "1",
   "ignore_zero": false,
   "include_accuracy": false,
   "include_geki_count": false,

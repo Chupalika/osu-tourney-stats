@@ -77,6 +77,8 @@ for map_id in mappool.keys():
             
             #include attributes
             acc, count_geki, count_300, count_katu, count100, count_50, count_miss, combo, mods = score_attributes.split("/")
+            if config["include_accuracy"]:
+                pick_rankings[key].append(acc)
             if config["include_geki_count"]:
                 pick_rankings[key].append(count_geki)
             if config["include_300_count"]:
@@ -108,6 +110,8 @@ for map_id in mappool.keys():
             
             #include attributes
             acc, count_geki, count_300, count_katu, count_100, count_50, count_miss, combo, mods = score_attributes.split("/")
+            if config["include_accuracy"]:
+                pick_rankings[key].append(acc)
             if config["include_geki_count"]:
                 pick_rankings[key].append(count_geki)
             if config["include_300_count"]:

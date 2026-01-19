@@ -6,7 +6,12 @@ import yadon
 with open("config.json", "r") as file:
     config = json.load(file)
 
+game_mode = int(config["game_mode"])
+game_mode_2 = ["osu", "taiko", "fruits", "mania"][game_mode]
+game_mode_3 = ["osu", "taiko", "catch", "mania"][game_mode]
+
 bracket = {}
+bracket["Ruleset"] = {"ShortName": game_mode_2, "OnlineID": int(config["game_mode"]), "Name": "osu!{}".format(game_mode_3)}
 bracket["Teams"] = []
 
 mappool = yadon.ReadTable("mappool")
@@ -48,10 +53,12 @@ for team_name in team_names:
     rank = next(team_rank for team_rank in overall_ranking.keys() if overall_ranking[team_rank][0] == team_name) if not config["bracket_ignore_scores"] else 1
     team = {}
     team["FullName"] = team_name
-    team["Seed"] = rank
+    team["Seed"] = int(rank)
     team["Players"] = []
     for i in range(len(teams[team_name])):
         player_name = teams[team_name][i]
+        if not player_name:
+            continue
         found = False
         for user_id in users.keys():
             if users[user_id]["username"] == player_name:
@@ -63,7 +70,7 @@ for team_name in team_names:
                 found = True
                 break
         if not found:
-            user = requests.get(url="https://osu.ppy.sh/api/get_user", params={"k": "aff27d4aea449fc489789148b4757726a469550b", "u": player_name, "m": "1"}).json()[0]
+            user = requests.get(url="https://osu.ppy.sh/api/get_user", params={"k": config["api_key"], "u": player_name, "m": config["game_mode"]}).json()[0]
             users[user["user_id"]] = {"username": user["username"], "rank": user["pp_rank"], "country": user["country"]}
             yadon.WriteTable("users", users, named_columns=True)
             player = {}
@@ -90,7 +97,7 @@ for team_name in team_names:
                         for key, value in pick_rankings.items():
                             if value[0] == team_name:
                                 map_result["Score"] = value[1]
-                                map_result["Seed"] = key
+                                map_result["Seed"] = int(float(key))
                                 break
                         mod_results["Beatmaps"].append(map_result)
                     break

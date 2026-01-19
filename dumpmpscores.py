@@ -78,7 +78,7 @@ for game in match["games"]:
             scores[user_id] = {}
             attributes[user_id] = {}
         if user_id not in users.keys():
-            user = requests.get(url="https://osu.ppy.sh/api/get_user", params={"k": config["api_key"], "u": user_id, "m": "1"}).json()[0]
+            user = requests.get(url="https://osu.ppy.sh/api/get_user", params={"k": config["api_key"], "u": user_id, "m": config["game_mode"]}).json()[0]
             users[user_id] = {"username": user["username"], "rank": user["pp_rank"], "country": user["country"]}
         
         #store individual score info
